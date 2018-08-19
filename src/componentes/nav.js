@@ -9,6 +9,7 @@ import {
   Header,
   Icon,
   Image,
+  Dropdown,
   List,
   Menu,
   Responsive,
@@ -67,25 +68,35 @@ class DesktopContainer extends Component {
             vertical
 
           >
-            <Menu
-              fixed={fixed ? 'top' : null}
-              inverted={!fixed}
-              pointing={!fixed}
-              secondary={!fixed}
-              size='large'
-            >
-              <Container>
-                <Menu.Item as='a' active>
-                  Home
-                </Menu.Item>
-                <Menu.Item as='a'>Work</Menu.Item>
-                <Menu.Item as='a'>Company</Menu.Item>
-                <Menu.Item as='a'>Careers</Menu.Item>
-                <Menu.Item position='right'>
 
-                </Menu.Item>
-              </Container>
-            </Menu>
+
+
+            <Menu
+                fixed={fixed ? 'top' : null}
+                inverted={!fixed}
+                pointing={!fixed}
+                secondary={!fixed}
+                size='large'
+
+            >
+                //Aqui me quede joto, estaba viendo como se ponen los links jajaja
+                <Menu.Item exact to = '/' >Inicio</Menu.Item>
+                <Menu.Item exact to = '/ALV'>Biografía</Menu.Item>
+                  <Dropdown text='Media' pointing className='link item' color = 'black' style={{ opacity: 0.6 }}>
+                      <Dropdown.Menu>
+                      <Dropdown.Item>Albums</Dropdown.Item>
+                      <Dropdown.Item>Videos</Dropdown.Item>
+                      <Dropdown.Divider />
+                      <Dropdown.Item>Libros</Dropdown.Item>
+                      <Dropdown.Item>Articulos</Dropdown.Item>
+                      <Dropdown.Item>Transcripciones</Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  <Menu.Item>Cursos</Menu.Item>
+                  <Menu.Item>Eventos</Menu.Item>
+           </Menu>
+
+
 
             <HomepageHeading />
           </Segment>
@@ -104,6 +115,8 @@ DesktopContainer.propTypes = {
 class MobileContainer extends Component {
   state = {}
 
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   handlePusherClick = () => {
     const { sidebarOpened } = this.state
 
@@ -115,22 +128,31 @@ class MobileContainer extends Component {
   render() {
     const { children } = this.props
     const { sidebarOpened } = this.state
+    const { activeItem } = this.state
 
     return (
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <Sidebar.Pushable>
           <Sidebar as={Menu} animation='uncover' inverted vertical visible={sidebarOpened}>
-            <Menu.Item as='a' active>
+            <Menu.Item as='a' active  >
               Home
             </Menu.Item>
-            <Menu.Item as='a'>Work</Menu.Item>
-            <Menu.Item as='a'>Company</Menu.Item>
-            <Menu.Item as='a'>Careers</Menu.Item>
-            <Menu.Item as='a'>Log in</Menu.Item>
-            <Menu.Item as='a'>Sign Up</Menu.Item>
+            <Menu.Item as='a'>Inicio</Menu.Item>
+            <Menu.Item as='a'>Biografía</Menu.Item>
+            <Dropdown item text='Media'  style = {{ textAlign:'center', background : '#1E1E1E'}} >
+                <Dropdown.Menu    style = {{position: 'static', background : '#1E1E1E', color : '@white'}}>
+                    <Dropdown.Item  text='Albums' />
+                    <Dropdown.Item  text='Videos' />
+                    <Dropdown.Item  text='Libros' />
+                    <Dropdown.Item  text='Articulos' />
+                    <Dropdown.Item  text='Transcripciones' />
+                </Dropdown.Menu>
+            </Dropdown>
+            <Menu.Item as='a'>Eventos</Menu.Item>
+
           </Sidebar>
 
-          <Sidebar.Pusher
+        <Sidebar.Pusher
             dimmed={sidebarOpened}
             onClick={this.handlePusherClick}
             style={{ minHeight: '100vh' }}

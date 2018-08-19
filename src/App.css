@@ -22,6 +22,16 @@
   font-size: large;
 }
 
+.ui.menu {
+    opacity: 1;
+  z-index: 1;
+}
+
+.go-behind {
+        position: relative !important;
+        //z-index: -1 !important;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
