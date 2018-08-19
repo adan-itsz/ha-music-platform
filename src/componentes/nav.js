@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom'
+
 
 import {
   Button,
@@ -25,7 +27,8 @@ const HomepageHeading = ({ mobile }) => (
       content='Hernán Arreola'
       inverted
       style={{
-        fontSize: mobile ? '2em' : '4em',
+        fontFamily:'Francois One',
+        fontSize: mobile ? '2em' : '5em',
         fontWeight: 'normal',
         marginBottom: 0,
         marginTop: mobile ? '1.5em' : '3em',
@@ -59,41 +62,40 @@ class DesktopContainer extends Component {
           once={false}
           onBottomPassed={this.showFixedMenu}
           onBottomPassedReverse={this.hideFixedMenu}
-
         >
           <Segment
             inverted
             textAlign='center'
-            style={{ minHeight: 800, maxWidth:1920, padding: '1em 0em',  backgroundImage: `url(${'https://images.pexels.com/photos/457445/pexels-photo-457445.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'})` }}
+            style={{ minHeight: 800, maxWidth:1920, padding: '1em 0em',
+             backgroundImage: `url(${'https://images.pexels.com/photos/167469/pexels-photo-167469.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'})`,
+             backgroundAttachment: 'fixed',
+             backgroundPosition: 'center',
+             backgroundRepeat: 'no-repeat',
+             backgroundSize: 'cover ' }}
             vertical
-
           >
-
-
 
             <Menu
                 fixed={fixed ? 'top' : null}
                 inverted={!fixed}
                 pointing={!fixed}
                 secondary={!fixed}
-                size='large'
+                size='large'>
 
-            >
-                //Aqui me quede joto, estaba viendo como se ponen los links jajaja
-                <Menu.Item exact to = '/' >Inicio</Menu.Item>
-                <Menu.Item exact to = '/ALV'>Biografía</Menu.Item>
-                  <Dropdown text='Media' pointing className='link item' color = 'black' style={{ opacity: 0.6 }}>
-                      <Dropdown.Menu>
-                      <Dropdown.Item>Albums</Dropdown.Item>
-                      <Dropdown.Item>Videos</Dropdown.Item>
+                <Menu.Item> <Link to={`/`}>Inicio</Link> </Menu.Item>
+                <Menu.Item> <Link to={`/biografia`}>Biografía</Link> </Menu.Item>
+                  <Dropdown text='Media' pointing className='link item' style={{ opacity: 1 }}>
+                      <Dropdown.Menu style={{ opacity: 0.9}}>
+                      <Dropdown.Item><Link to={`/media`}>Albums</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to={`/media`}>Videos</Link></Dropdown.Item>
                       <Dropdown.Divider />
-                      <Dropdown.Item>Libros</Dropdown.Item>
-                      <Dropdown.Item>Articulos</Dropdown.Item>
-                      <Dropdown.Item>Transcripciones</Dropdown.Item>
+                      <Dropdown.Item><Link to={`/media`}>Libros</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to={`/media`}>Articulos</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to={`/media`}>Transcripciones</Link></Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
-                  <Menu.Item>Cursos</Menu.Item>
-                  <Menu.Item>Eventos</Menu.Item>
+                  <Menu.Item><Link to={`/cursos`}>Cursos</Link></Menu.Item>
+                  <Menu.Item><Link to={`/eventos`}>Eventos</Link></Menu.Item>
            </Menu>
 
 
@@ -134,21 +136,19 @@ class MobileContainer extends Component {
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <Sidebar.Pushable>
           <Sidebar as={Menu} animation='uncover' inverted vertical visible={sidebarOpened}>
-            <Menu.Item as='a' active  >
-              Home
-            </Menu.Item>
-            <Menu.Item as='a'>Inicio</Menu.Item>
-            <Menu.Item as='a'>Biografía</Menu.Item>
+            <Menu.Item as='a'><Link to={`/`}>Inicio</Link></Menu.Item>
+            <Menu.Item as='a'><Link to={`/biografia`}>Biografía</Link></Menu.Item>
             <Dropdown item text='Media'  style = {{ textAlign:'center', background : '#1E1E1E'}} >
                 <Dropdown.Menu    style = {{position: 'static', background : '#1E1E1E', color : '@white'}}>
-                    <Dropdown.Item  text='Albums' />
-                    <Dropdown.Item  text='Videos' />
-                    <Dropdown.Item  text='Libros' />
-                    <Dropdown.Item  text='Articulos' />
-                    <Dropdown.Item  text='Transcripciones' />
+                    <Link to={`/media`}><Dropdown.Item  text='Albums' /></Link>
+                    <Link to={`/media`}><Dropdown.Item  text='Videos' /></Link>
+                    <Link to={`/media`}><Dropdown.Item  text='Libros' /></Link>
+                    <Link to={`/media`}><Dropdown.Item  text='Articulos' /></Link>
+                    <Link to={`/media`}><Dropdown.Item  text='Transcripciones'/></Link>
                 </Dropdown.Menu>
             </Dropdown>
-            <Menu.Item as='a'>Eventos</Menu.Item>
+            <Menu.Item as='a'><Link to={`/cursos`}>Cursos</Link></Menu.Item>
+            <Menu.Item as='a'><Link to={`/eventos`}>Eventos</Link></Menu.Item>
 
           </Sidebar>
 
@@ -203,27 +203,27 @@ const HomepageLayout = () => (
         <Grid.Row>
           <Grid.Column width={8}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              We Help Companies and Companions
+              Lorem ipsum dolor sit amet
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              We can give your company superpowers to do things that they never thought possible.
-              Let us delight your customers and empower your needs... through pure data analytics.
+              Duis torquent et nec curabitur varius felis ante nunc auctor ligula magnis, volutpat metus eleifend vitae sociosqu quisque nisl conubia,
+              malesuada nascetur convallis consequat quam cubilia a mus sociis natoque.
             </p>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              We Make Bananas That Can Dance
+              Nisl odio vel phasellus fusce ut sollicitudin
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              Yes that's right, you thought it was the stuff of dreams, but even bananas can be
-              bioengineered.
+              Ut aptent orci ad lacinia purus egestas ultricies, conubia himenaeos fusce facilisi donec at risus etiam,
+              volutpat class sociosqu malesuada tempor porttitor.
             </p>
           </Grid.Column>
           <Grid.Column floated='right' width={6}>
-            <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
+            <Image bordered rounded size='large' src='https://firebasestorage.googleapis.com/v0/b/kodika-d0fd5.appspot.com/o/guitar.jpeg?alt=media&token=c6b9847f-e234-42ef-94ef-940c6a026ce7' />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button size='huge'>Check Them Out</Button>
+            <Button size='huge'><Icon name='spotify' size='large' />Check Them Out</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -233,32 +233,42 @@ const HomepageLayout = () => (
         <Grid.Row textAlign='center'>
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              "What a Company"
+              "Ut aptent orci ad lacinia purus"
             </Header>
-            <p style={{ fontSize: '1.33em' }}>That is what they all say about us</p>
+            <p style={{ fontSize: '1.33em' }}>Nam condimentum magna nibh praesent vehicula velit phasellus porttitor.</p>
           </Grid.Column>
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              "I shouldn't have gone with their competitor."
+              "Velit at tortor sollicitudin vehicula aptent ligula"
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              <Image avatar src='/images/avatar/large/nan.jpg' />
-              <b>Nan</b> Chief Fun Officer Acme Toys
+              <Icon name='sitemap' size='big' />
+              <t/> Volutpat libero tincidunt purus.
             </p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
     </Segment>
-    <Segment style={{ padding: '8em 0em' }} vertical>
+
+    <Segment style={{ padding: '8em 0em'}} vertical>
+    <Grid container stackable verticalAlign='middle' style={{paddingBottom:'5vh'}}>
+      <Grid.Row>
+        <Grid.Column width={8}>
+          <Header as='h3' style={{ fontSize: '2em' }}>
+            Facilisi orci rhoncus litora felis in pulvinar
+          </Header>
+          <p style={{ fontSize: '1.33em' }}>
+          Laoreet morbi cursus nullam tristique non condimentum per nam ut cubilia, mi feugiat conubia lacinia blandit est varius vel ligula leo,
+           senectus mollis himenaeos odio at elementum eu suscipit mauris. Elementum lacus primis laoreet lectus sed, diam quam accumsan id curae,
+           potenti vestibulum necerat.
+          </p>
+        </Grid.Column>
+        <Grid.Column floated='left' width={6}>
+          <img style={{maxWidth:'35vh',float:'center'}}src='https://medias.audiofanzine.com/images/normal/berklee-online-piano-handbook-810783.png'/>
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
       <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>
-          Breaking The Grid, Grabs Your Attention
-        </Header>
-        <p style={{ fontSize: '1.33em' }}>
-          Instead of focusing on content creation and hard work, we have learned how to master the
-          art of doing nothing by providing massive amounts of whitespace and generic content that
-          can seem massive, monolithic and worth your attention.
-        </p>
         <Button as='a' size='large'>
           Read More
         </Button>
@@ -268,18 +278,18 @@ const HomepageLayout = () => (
           horizontal
           style={{ margin: '3em 0em', textTransform: 'uppercase' }}
         >
-          <a href='#'>Case Studies</a>
+          <a href='#'>Duis nam ut </a>
         </Divider>
         <Header as='h3' style={{ fontSize: '2em' }}>
-          Did We Tell You About Our Bananas?
+          Etiam semper pharetra morbi tortor
         </Header>
         <p style={{ fontSize: '1.33em' }}>
-          Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but
-          it's really true. It took years of gene splicing and combinatory DNA research, but our
-          bananas can really dance.
+          Tristique id euismod nisi conubia pellentesque sagittis dis inceptos, risus sed purus dictum lectus blandit ut,
+          commodo taciti habitasse in ridiculus faucibus lacus. Duis montes nec ad quisque tellus ligula condimentum sem,
+           consequat torquent dictumst ante etiam justo magnis, nullam vehicula.
         </p>
         <Button as='a' size='large'>
-          I'm Still Quite Interested
+          Sodales lacinia aptent
         </Button>
       </Container>
     </Segment>
@@ -287,31 +297,33 @@ const HomepageLayout = () => (
       <Container>
         <Grid divided inverted stackable>
           <Grid.Row>
+          <Grid.Column width={7}>
+            <Header as='h4' inverted>
+              Redes sociales
+            </Header>
+            <p>
+              <a href={`https://www.facebook.com`} target={'_blank'} style={{color:'white' }}> <Icon name='facebook' size='big' /> </a>
+              <a href={`https://www.instagram.com`}target={'_blank'} style={{color:'white' }}><Icon name='instagram' size='big' /></a>
+              <a href={`https://www.youtube.com`}target={'_blank'} style={{color:'white' }}>  <Icon name='youtube' size='big' /></a>
+            </p>
+          </Grid.Column>
             <Grid.Column width={3}>
-              <Header inverted as='h4' content='About' />
+              <Header inverted as='h4' content='Links rapidos' />
               <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Religious Ceremonies</List.Item>
-                <List.Item as='a'>Gazebo Plans</List.Item>
+                <List.Item as='a'>Inicio</List.Item>
+                <List.Item as='a'>Biografia</List.Item>
+                <List.Item as='a'>Cursos</List.Item>
+                <List.Item as='a'>Eventos</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
-              <Header inverted as='h4' content='Services' />
+              <Header inverted as='h4' content='Media' />
               <List link inverted>
-                <List.Item as='a'>Banana Pre-Order</List.Item>
-                <List.Item as='a'>DNA FAQ</List.Item>
-                <List.Item as='a'>How To Access</List.Item>
-                <List.Item as='a'>Favorite X-Men</List.Item>
+                <List.Item as='a'>Albums</List.Item>
+                <List.Item as='a'>Videos</List.Item>
+                <List.Item as='a'>Libros</List.Item>
+                <List.Item as='a'>Articulos</List.Item>
               </List>
-            </Grid.Column>
-            <Grid.Column width={7}>
-              <Header as='h4' inverted>
-                Footer Header
-              </Header>
-              <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
-              </p>
             </Grid.Column>
           </Grid.Row>
         </Grid>
