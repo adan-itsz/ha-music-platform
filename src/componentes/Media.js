@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
+import {Switch, Route,BrowserRouter} from 'react-router-dom'
 
 
 import {
@@ -31,7 +32,7 @@ const HomepageHeading = ({ mobile }) => (
         fontSize: mobile ? '2em' : '5em',
         fontWeight: 'normal',
         marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
+        marginTop: mobile ? '1.5em' : '0.5em',
       }}
     />
 
@@ -66,8 +67,8 @@ class DesktopContainer extends Component {
           <Segment
             inverted
             textAlign='center'
-            style={{ minHeight: 800, maxWidth:1920, padding: '1em 0em',
-             backgroundImage: `url(${'https://images.pexels.com/photos/167469/pexels-photo-167469.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'})`,
+            style={{ minHeight: 250, maxWidth:1920, padding: '1em 0em',
+            backgroundImage: `url(${'https://images.pexels.com/photos/167469/pexels-photo-167469.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'})`,
              backgroundAttachment: 'fixed',
              backgroundPosition: 'center',
              backgroundRepeat: 'no-repeat',
@@ -86,12 +87,12 @@ class DesktopContainer extends Component {
                 <Menu.Item> <Link to={`/biografia`}>Biografía</Link> </Menu.Item>
                   <Dropdown text='Media' pointing className='link item' style={{ opacity: 1}}>
                       <Dropdown.Menu style={{ opacity: 0.9, background : '#1E1E1E'}}>
-                      <Dropdown.Item><Link to={`/media/albums`}>Albums</Link></Dropdown.Item>
-                      <Dropdown.Item><Link to={`/media/videos`}>Videos</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to={`/media`}>Albums</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to={`/media`}>Videos</Link></Dropdown.Item>
                       <Dropdown.Divider />
-                      <Dropdown.Item><Link to={`/media/libros`}>Libros</Link></Dropdown.Item>
-                      <Dropdown.Item><Link to={`/media/articulos`}>Articulos</Link></Dropdown.Item>
-                      <Dropdown.Item><Link to={`/media/transcripciones`}>Transcripciones</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to={`/media`}>Libros</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to={`/media`}>Articulos</Link></Dropdown.Item>
+                      <Dropdown.Item><Link to={`/media`}>Transcripciones</Link></Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   <Menu.Item><Link to={`/cursos`}>Cursos</Link></Menu.Item>
@@ -140,11 +141,11 @@ class MobileContainer extends Component {
             <Menu.Item as='a'><Link to={`/biografia`}>Biografía</Link></Menu.Item>
             <Dropdown item text='Media'  style = {{ textAlign:'center', background : '#1E1E1E'}} >
                 <Dropdown.Menu    style = {{position: 'static', background : '#1E1E1E', color : '@white'}}>
-                    <Link to={`/media/albums`}><Dropdown.Item  text='Albums' /></Link>
-                    <Link to={`/media/videos`}><Dropdown.Item  text='Videos' /></Link>
-                    <Link to={`/media/libros`}><Dropdown.Item  text='Libros' /></Link>
-                    <Link to={`/media/articulos`}><Dropdown.Item  text='Articulos' /></Link>
-                    <Link to={`/media/transcripciones`}><Dropdown.Item  text='Transcripciones'/></Link>
+                    <Link to={`/media`}><Dropdown.Item  text='Albums' /></Link>
+                    <Link to={`/media`}><Dropdown.Item  text='Videos' /></Link>
+                    <Link to={`/media`}><Dropdown.Item  text='Libros' /></Link>
+                    <Link to={`/media`}><Dropdown.Item  text='Articulos' /></Link>
+                    <Link to={`/media`}><Dropdown.Item  text='Transcripciones'/></Link>
                 </Dropdown.Menu>
             </Dropdown>
             <Menu.Item as='a'><Link to={`/cursos`}>Cursos</Link></Menu.Item>
@@ -240,105 +241,52 @@ const Footer = () =>(
 
 const HomepageLayout = () => (
   <ResponsiveContainer>
-    <Segment style={{ padding: '8em 0em' }} vertical>
-      <Grid container stackable verticalAlign='middle'>
-        <Grid.Row>
-          <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              Lorem ipsum dolor sit amet
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              Duis torquent et nec curabitur varius felis ante nunc auctor ligula magnis, volutpat metus eleifend vitae sociosqu quisque nisl conubia,
-              malesuada nascetur convallis consequat quam cubilia a mus sociis natoque.
-            </p>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              Nisl odio vel phasellus fusce ut sollicitudin
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              Ut aptent orci ad lacinia purus egestas ultricies, conubia himenaeos fusce facilisi donec at risus etiam,
-              volutpat class sociosqu malesuada tempor porttitor.
-            </p>
-          </Grid.Column>
-          <Grid.Column floated='right' width={6}>
-            <Image bordered rounded size='large' src='https://firebasestorage.googleapis.com/v0/b/kodika-d0fd5.appspot.com/o/guitar.jpeg?alt=media&token=c6b9847f-e234-42ef-94ef-940c6a026ce7' />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column textAlign='center'>
-            <Button size='huge'><Icon name='spotify' size='large' />Check Them Out</Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-    <Segment style={{ padding: '0em' }} vertical>
-      <Grid celled='internally' columns='equal' stackable>
-        <Grid.Row textAlign='center'>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              "Ut aptent orci ad lacinia purus"
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>Nam condimentum magna nibh praesent vehicula velit phasellus porttitor.</p>
-          </Grid.Column>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              "Velit at tortor sollicitudin vehicula aptent ligula"
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              <Icon name='sitemap' size='big' />
-              <t/> Volutpat libero tincidunt purus.
-            </p>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-
-    <Segment style={{ padding: '8em 0em'}} vertical>
-    <Grid container stackable verticalAlign='middle' style={{paddingBottom:'5vh'}}>
-      <Grid.Row>
-        <Grid.Column width={8}>
-          <Header as='h3' style={{ fontSize: '2em' }}>
-            Facilisi orci rhoncus litora felis in pulvinar
-          </Header>
-          <p style={{ fontSize: '1.33em' }}>
-          Laoreet morbi cursus nullam tristique non condimentum per nam ut cubilia, mi feugiat conubia lacinia blandit est varius vel ligula leo,
-           senectus mollis himenaeos odio at elementum eu suscipit mauris. Elementum lacus primis laoreet lectus sed, diam quam accumsan id curae,
-           potenti vestibulum necerat.
-          </p>
-        </Grid.Column>
-        <Grid.Column floated='left' width={6}>
-          <img style={{maxWidth:'35vh',float:'center'}}src='https://medias.audiofanzine.com/images/normal/berklee-online-piano-handbook-810783.png'/>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
-      <Container text>
-        <Button as='a' size='large'>
-          Read More
-        </Button>
-        <Divider
-          as='h4'
-          className='header'
-          horizontal
-          style={{ margin: '3em 0em', textTransform: 'uppercase' }}
-        >
-          <a href='#'>Duis nam ut </a>
-        </Divider>
+  <Segment style={{ padding: '8em 0em'}} vertical>
+  <Grid container stackable verticalAlign='middle' style={{paddingBottom:'5vh'}}>
+    <Grid.Row>
+      <Grid.Column width={8}>
         <Header as='h3' style={{ fontSize: '2em' }}>
-          Etiam semper pharetra morbi tortor
+          Facilisi orci rhoncus litora felis in pulvinar
         </Header>
         <p style={{ fontSize: '1.33em' }}>
-          Tristique id euismod nisi conubia pellentesque sagittis dis inceptos, risus sed purus dictum lectus blandit ut,
-          commodo taciti habitasse in ridiculus faucibus lacus. Duis montes nec ad quisque tellus ligula condimentum sem,
-           consequat torquent dictumst ante etiam justo magnis, nullam vehicula.
+        Laoreet morbi cursus nullam tristique non condimentum per nam ut cubilia, mi feugiat conubia lacinia blandit est varius vel ligula leo,
+         senectus mollis himenaeos odio at elementum eu suscipit mauris. Elementum lacus primis laoreet lectus sed, diam quam accumsan id curae,
+         potenti vestibulum necerat.
         </p>
-        <Button as='a' size='large'>
-          Sodales lacinia aptent
-        </Button>
-      </Container>
-    </Segment>
+      </Grid.Column>
+      <Grid.Column floated='left' width={6}>
+        <img style={{maxWidth:'35vh',float:'center'}}src='https://medias.audiofanzine.com/images/normal/berklee-online-piano-handbook-810783.png'/>
+      </Grid.Column>
+    </Grid.Row>
+  </Grid>
+    <Container text>
+      <Button as='a' size='large'>
+        Read More
+      </Button>
+      <Divider
+        as='h4'
+        className='header'
+        horizontal
+        style={{ margin: '3em 0em', textTransform: 'uppercase' }}
+      >
+        <a href='#'>Duis nam ut </a>
+      </Divider>
+      <Header as='h3' style={{ fontSize: '2em' }}>
+        Etiam semper pharetra morbi tortor
+      </Header>
+      <p style={{ fontSize: '1.33em' }}>
+        Tristique id euismod nisi conubia pellentesque sagittis dis inceptos, risus sed purus dictum lectus blandit ut,
+        commodo taciti habitasse in ridiculus faucibus lacus. Duis montes nec ad quisque tellus ligula condimentum sem,
+         consequat torquent dictumst ante etiam justo magnis, nullam vehicula.
+      </p>
+      <Button as='a' size='large'>
+        Sodales lacinia aptent
+      </Button>
+    </Container>
+  </Segment>
     <Footer/>
   </ResponsiveContainer>
 )
-
 
 
 export default HomepageLayout
